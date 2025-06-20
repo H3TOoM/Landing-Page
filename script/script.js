@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
   new Swiper(".swiper-container", {
     loop: true,
     grabCursor: true,
-    speed: 900,    
+    speed: 900,
     autoplay: {
       delay: 4000,
       disableOnInteraction: false,
