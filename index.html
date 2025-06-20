@@ -8,7 +8,7 @@
   <title>شركة الهرم للنقل | نقل عفش داخل الرياض</title>
 
   <!-- Canonical URL -->
-  <link rel="canonical" href="https://example.com/" />
+  <link rel="canonical" href="https://alharm-truck.netlify.app/" />
 
   <!-- Robots -->
   <meta name="robots" content="index, follow" />
@@ -24,7 +24,7 @@
   <meta property="og:description"
     content="شركة الهرم للنقل بالرياض تقدم خدمات نقل عفش واثاث باحترافية داخل الرياض مع تغليف آمن وفريق متخصص. اتصل بنا الآن لخدمة سريعة وآمنة على مدار 24 ساعة." />
   <meta property="og:image" content="/assets/images/hero.jpg" />
-  <meta property="og:url" content="https://example.com/" />
+  <meta property="og:url" content="https://alharm-truck.netlify.app/" />
   <meta property="og:type" content="website" />
 
   <!-- Twitter Card -->
@@ -52,6 +52,23 @@
 </head>
 
 <body class="font-arabic bg-[#F9F9F6] text-[#3E3E3E]">
+  <!-- Special Alert -->
+  <div id="special-alert"
+    class="fixed top-16 right-4 left-4 md:left-auto md:right-8 z-[60] max-w-xl mx-auto bg-gradient-to-l from-[#7B8C6D] to-[#A3B18A] text-white rounded-lg shadow-lg flex items-center justify-between px-6 py-4 gap-4"
+    data-aos="fade-down" style="display: none;">
+    <div class="flex items-center gap-3">
+      <i class="fas fa-bell text-2xl animate-pulse"></i>
+      <span class="font-bold text-lg">تنبيه خاص:</span>
+      <span id="special-alert-message" class="text-md">مرحباً بكم في شركة الهرم للنقل! عروض خاصة لفترة محدودة على جميع
+        خدمات نقل العفش داخل الرياض 🚚✨</span>
+    </div>
+    <button id="special-alert-close" class="text-white text-2xl hover:text-gray-200 transition"
+      aria-label="إغلاق التنبيه">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  <!-- End Special Alert -->
+
   <!-- navbar -->
   <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-transparent">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
@@ -70,6 +87,7 @@
         <li><a href="#about" class="nav-link">عن الشركة</a></li>
         <li><a href="#services" class="nav-link">خدماتنا</a></li>
         <li><a href="#gallery" class="nav-link">أعمالنا</a></li>
+        <li><a href="#plogs" class="nav-link">المدونة</a></li>
         <li><a href="#testimonials" class="nav-link">آراء العملاء</a></li>
         <li><a href="#faq" class="nav-link">الأسئلة الشائعة</a></li>
         <li>
@@ -94,12 +112,13 @@
     </div>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden bg-[#FFFDF6] px-6 pb-4">
+    <div id="mobile-menu" class="md:hidden bg-[#FFFDF6] px-6 pb-4">
       <ul class="flex flex-col gap-4 text-center">
         <li><a href="#home" class="nav-link">الرئيسية</a></li>
         <li><a href="#about" class="nav-link">عن الشركة</a></li>
         <li><a href="#services" class="nav-link">خدماتنا</a></li>
         <li><a href="#gallery" class="nav-link">أعمالنا</a></li>
+        <li><a href="#plogs" class="nav-link">المدونة</a></li>
         <li><a href="#testimonials" class="nav-link">آراء العملاء</a></li>
         <li><a href="#faq" class="nav-link">الأسئلة الشائعة</a></li>
         <li>
@@ -193,7 +212,7 @@
     </div>
   </section>
   <!-- end about section -->
-  
+
 
   <!-- services section -->
   <section id="services" class="py-20 bg-[#F9F9F6] text-center">
@@ -232,6 +251,37 @@
           </h3>
           <p class="text-gray-600">
             لدينا فنيون متخصصون في فك وتركيب جميع أنواع الأثاث بكل دقة وأمان.
+          </p>
+        </div>
+
+        <!-- New Service: فك و تركيب مكيفات اسبلت -->
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition" data-aos="fade-up"
+          data-aos-delay="400">
+          <i class="fas fa-snowflake text-4xl text-[#7B8C6D] mb-4"></i>
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">فك و تركيب مكيفات اسبلت</h3>
+          <p class="text-gray-600">
+            نقدم خدمة فك وتركيب مكيفات الاسبلت باحترافية عالية مع ضمان سلامة الأجهزة والتوصيلات.
+          </p>
+        </div>
+
+        <!-- New Service: تنظيف الوحدات السكنية و المنشاة الإدارية -->
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition" data-aos="fade-up"
+          data-aos-delay="500">
+          <i class="fas fa-broom text-4xl text-[#7B8C6D] mb-4"></i>
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">تنظيف الوحدات السكنية و المنشاة الإدارية</h3>
+          <p class="text-gray-600">
+            نوفر خدمات تنظيف شاملة للوحدات السكنية والمنشآت الإدارية بأحدث المعدات ومواد التنظيف الآمنة.
+          </p>
+        </div>
+
+        <!-- New Service: نقل الأجهزة الكهربائية الثقيلة -->
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition" data-aos="fade-up"
+          data-aos-delay="600">
+          <i class="fas fa-plug text-4xl text-[#7B8C6D] mb-4"></i>
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">نقل الأجهزة الكهربائية الثقيلة</h3>
+          <p class="text-gray-600">
+            نوفر خدمة نقل الأجهزة الكهربائية الكبيرة مثل الثلاجات والغسالات باحترافية وأمان تام مع فريق متخصص وأدوات
+            حديثة.
           </p>
         </div>
       </div>
@@ -404,6 +454,41 @@
   </section>
   <!-- end gallery section -->
 
+  <!-- plogs section -->
+  <section id="plogs" class="bg-[#F9F9F6] py-20">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-700 mb-12" data-aos="fade-up">
+        المدونة
+      </h2>
+      <!-- Add/Edit Form -->
+      <form id="plog-form" class="mb-8 max-w-xl mx-auto bg-white rounded-lg shadow-md p-6 flex flex-col gap-4"
+        data-aos="fade-down" style="display:none;">
+        <input type="hidden" id="plog-id" />
+        <input type="text" id="plog-title" class="border rounded p-2 text-right" placeholder="عنوان التدوينة"
+          required />
+        <textarea id="plog-content" class="border rounded p-2 text-right" placeholder="محتوى التدوينة" rows="3"
+          required></textarea>
+        <div class="flex gap-4 justify-center">
+          <button type="submit"
+            class="bg-[#7B8C6D] text-white px-6 py-2 rounded hover:bg-[#657458] transition">حفظ</button>
+          <button type="button" id="plog-cancel"
+            class="bg-gray-400 text-white px-6 py-2 rounded hover:bg-gray-500 transition">إلغاء</button>
+        </div>
+      </form>
+      <!-- Add Button -->
+      <button id="plog-add-btn"
+        class="mb-8 px-8 py-3 bg-[#7B8C6D] text-white rounded-full text-lg font-semibold hover:bg-[#657458] transition"
+        data-aos="zoom-in">
+        إضافة تدوينة جديدة
+      </button>
+      <!-- Plogs List -->
+      <div id="plogs-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Plogs will be rendered here -->
+      </div>
+    </div>
+  </section>
+  <!-- end plogs section -->
+
   <!-- FAQ section -->
   <section id="faq" class="bg-[#F7F8F2] py-20">
     <div class="max-w-4xl mx-auto px-4 text-center">
@@ -463,7 +548,7 @@
       </h2>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" data-aos="fade-up" data-aos-delay="100">
-        <!-- الهاتف -->
+        <!-- phone -->
         <div
           class="bg-white shadow-md rounded-xl p-6 flex flex-col items-center text-center hover:shadow-lg transition">
           <i class="fas fa-phone text-[#7B8C6D] text-3xl mb-3"></i>
@@ -471,7 +556,7 @@
           <a href="tel:0560200279" class="text-gray-500 hover:text-[#7B8C6D] transition">0560200279</a>
         </div>
 
-        <!-- واتساب -->
+        <!-- whatsapp -->
         <div
           class="bg-white shadow-md rounded-xl p-6 flex flex-col items-center text-center hover:shadow-lg transition">
           <i class="fab fa-whatsapp text-green-500 text-3xl mb-3"></i>
@@ -480,7 +565,7 @@
             class="text-gray-500 hover:text-[#7B8C6D] transition">راسلنا الآن</a>
         </div>
 
-        <!-- البريد الإلكتروني -->
+        <!-- email -->
         <div
           class="bg-white shadow-md rounded-xl p-6 flex flex-col items-center text-center hover:shadow-lg transition">
           <i class="fas fa-envelope text-[#7B8C6D] text-3xl mb-3"></i>
@@ -491,7 +576,7 @@
             class="text-gray-500 hover:text-[#7B8C6D] transition">alharamcompany11</a>
         </div>
 
-        <!-- العنوان -->
+        <!-- address -->
         <div
           class="bg-white shadow-md rounded-xl p-6 flex flex-col items-center text-center hover:shadow-lg transition">
           <i class="fas fa-map-marker-alt text-[#7B8C6D] text-3xl mb-3"></i>
@@ -506,13 +591,13 @@
   <!-- footer -->
   <footer dir="rtl" class="bg-[#7B8C6D] text-white py-10">
     <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6 text-center md:text-right">
-      <!-- اسم الشركة -->
+      <!-- company name -->
       <div>
         <h3 class="text-2xl font-bold mb-3">الهرم للنقل</h3>
         <p class="text-sm text-gray-100">نقل آمن وسريع داخل الرياض.</p>
       </div>
 
-      <!-- روابط سريعة -->
+      <!-- quick links -->
       <div>
         <h4 class="font-semibold mb-3">روابط سريعة</h4>
         <ul class="space-y-2 text-sm">
@@ -523,7 +608,7 @@
         </ul>
       </div>
 
-      <!-- معلومات التواصل -->
+      <!-- contact info -->
       <div>
         <h4 class="font-semibold mb-3">تواصل معنا</h4>
         <ul class="space-y-2 text-sm">
@@ -553,6 +638,24 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <!-- AOS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <!-- Firebase App (the core Firebase SDK) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <!-- Firebase Firestore -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+  <!-- Firebase Config (replace with your own config) -->
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyCMy7lox3cKC17Ax1MucNGMpH1FCHnGuEs",
+      authDomain: "alharam-db7a4.firebaseapp.com",
+      projectId: "alharam-db7a4",
+      storageBucket: "alharam-db7a4.appspot.com",
+      messagingSenderId: "625367745489",
+      appId: "1:625367745489:web:6d23438595434f237096f0",
+      measurementId: "G-838CCMJGFL"
+    };
+    firebase.initializeApp(firebaseConfig);
+    window.db = firebase.firestore();
+  </script>
   <!-- Script JS  -->
   <script src="script/script.js"></script>
   <!-- schema.org -->
@@ -573,5 +676,42 @@
         "areaServed": "الرياض"
       }
     </script>
+
+  <!-- Special Confirm Modal for Plogs Delete -->
+  <div id="plog-confirm-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black bg-opacity-40"
+    style="display:none;">
+    <div class="bg-white rounded-lg shadow-2xl p-8 max-w-md w-full text-center" data-aos="zoom-in">
+      <div class="mb-4">
+        <i class="fas fa-exclamation-triangle text-4xl text-[#E63946] animate-bounce mb-2"></i>
+        <h3 class="text-xl font-bold text-[#7B8C6D] mb-2">تأكيد الحذف</h3>
+        <p class="text-gray-700">هل أنت متأكد أنك تريد حذف هذه التدوينة؟ لا يمكن التراجع عن هذا الإجراء.</p>
+      </div>
+      <div class="flex justify-center gap-4 mt-6">
+        <button id="plog-confirm-yes" class="bg-[#E63946] text-white px-6 py-2 rounded hover:bg-red-700 transition">نعم،
+          احذف</button>
+        <button id="plog-confirm-no"
+          class="bg-gray-400 text-white px-6 py-2 rounded hover:bg-gray-500 transition">إلغاء</button>
+      </div>
+    </div>
+  </div>
+  <!-- End Special Confirm Modal -->
+
+  <!-- Welcome Toast -->
+  <div id="welcome-toast"
+    class="fixed bottom-8 left-8 z-[100] max-w-xs w-full bg-white dark:bg-[#232323] text-[#7B8C6D] dark:text-[#A3B18A] rounded-xl shadow-2xl flex items-center gap-4 px-6 py-4 border border-[#7B8C6D] dark:border-[#A3B18A] transition-all duration-500"
+    style="display:none;">
+    <i class="fas fa-hand-sparkles text-2xl animate-bounce"></i>
+    <div class="flex-1">
+      <div class="font-bold text-lg mb-1">مرحباً بك في شركة الهرم للنقل!</div>
+      <div class="text-sm text-gray-600 dark:text-gray-300">نتمنى لك تجربة رائعة معنا 🚚✨</div>
+      <div class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded mt-3 overflow-hidden">
+        <div id="toast-progress"
+          class="h-full bg-gradient-to-l from-[#7B8C6D] to-[#A3B18A] transition-all duration-100 linear"
+          style="width:100%"></div>
+      </div>
+    </div>
+  </div>
+  <!-- End Welcome Toast -->
 </body>
+
 </html>

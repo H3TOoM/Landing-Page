@@ -103,3 +103,32 @@ html,
 body {
   overflow-x: hidden;
 }
+
+/* Mobile menu dark mode improvements */
+.dark #mobile-menu {
+  background-color: #232323 !important;
+  color: #e0e0e0 !important;
+}
+.dark #mobile-menu a {
+  color: #e0e0e0 !important;
+}
+.dark #mobile-menu a:hover {
+  color: var(--primary-color) !important;
+}
+.dark #mobile-menu button {
+  color: var(--primary-color) !important;
+}
+
+/* Mobile menu smooth open/close animation */
+#mobile-menu {
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-10px);
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s, transform 0.4s;
+}
+#mobile-menu.open {
+  max-height: 500px;
+  opacity: 1;
+  transform: translateY(0);
+}
