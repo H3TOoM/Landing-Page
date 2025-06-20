@@ -107,8 +107,6 @@ AOS.init({
   once: true,
 });
 
-
-
 //  ==========swiper ==================
 document.addEventListener("DOMContentLoaded", function () {
   new Swiper(".swiper-container", {
