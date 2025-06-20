@@ -44,6 +44,61 @@ document.addEventListener("DOMContentLoaded", () => {
       toTopBtn.classList.toggle("hidden", window.scrollY <= 300);
     }
   });
+
+  // ========== Dark Mode Toggle ==========
+  const themeToggle = document.getElementById("theme-toggle");
+  const themeToggleMobile = document.getElementById("theme-toggle-mobile");
+  const themeIcon = document.getElementById("theme-icon");
+  const themeIconMobile = document.getElementById("theme-icon-mobile");
+  const htmlEl = document.documentElement;
+
+  // Function to toggle theme
+  const toggleTheme = () => {
+    htmlEl.classList.toggle("dark");
+    const isDarkMode = htmlEl.classList.contains("dark");
+    localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+
+    // Update icons
+    if (themeIcon) {
+      themeIcon.classList.toggle("fa-moon", !isDarkMode);
+      themeIcon.classList.toggle("fa-sun", isDarkMode);
+    }
+    if (themeIconMobile) {
+      themeIconMobile.classList.toggle("fa-moon", !isDarkMode);
+      themeIconMobile.classList.toggle("fa-sun", isDarkMode);
+    }
+  };
+
+  // Add event listeners
+  if (themeToggle) {
+    themeToggle.addEventListener("click", toggleTheme);
+  }
+  if (themeToggleMobile) {
+    themeToggleMobile.addEventListener("click", toggleTheme);
+  }
+
+  // Apply saved theme on page load
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme) {
+    if (savedTheme === "dark") {
+      htmlEl.classList.add("dark");
+      if (themeIcon) {
+        themeIcon.classList.replace("fa-moon", "fa-sun");
+      }
+      if (themeIconMobile) {
+        themeIconMobile.classList.replace("fa-moon", "fa-sun");
+      }
+    }
+  } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    // If no theme is saved, check for user's OS preference
+    htmlEl.classList.add("dark");
+    if (themeIcon) {
+      themeIcon.classList.replace("fa-moon", "fa-sun");
+    }
+    if (themeIconMobile) {
+      themeIconMobile.classList.replace("fa-moon", "fa-sun");
+    }
+  }
 });
 
 // ========== AOS Animation ==========
@@ -52,7 +107,24 @@ AOS.init({
   once: true,
 });
 
-// ========== Scroll to Top Function ==========
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
+
+
+//  ==========swiper ==================
+document.addEventListener("DOMContentLoaded", function () {
+  new Swiper(".swiper-container", {
+    loop: true,
+    grabCursor: true,
+    speed: 900,    
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
+    },
+    slidesPerView: 1,
+    spaceBetween: 30,
+    breakpoints: {
+      768: { slidesPerView: 2 },
+      1024: { slidesPerView: 3 },
+    },
+  });
+
+});
