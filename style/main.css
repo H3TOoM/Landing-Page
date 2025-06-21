@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Beiruti:wght@200..900&family=Big+Shoulders+Stencil:opsz,wght@10..72,100..900&family=Cairo+Play:wght@200..1000&family=Cairo:wght@200..1000&family=Changa:wght@200..800&family=El+Messiri:wght@400..700&family=Fustat:wght@200..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Kufam:ital,wght@0,400..900;1,400..900&family=Lalezar&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Kufi+Arabic:wght@100..900&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&family=Sigmar&family=Work+Sans:ital,wght@0,100..900;1,100..900&family=Zain:ital,wght@0,200;0,300;0,400;0,700;0,800;0,900;1,300;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap");
 
 :root {
   --background: #f9f9f6;
@@ -23,7 +23,7 @@ html.dark {
 }
 
 body {
-  font-family: "Cairo";
+  font-family: "Cairo", sans-serif;
   background-color: var(--background);
   color: var(--text-color);
   transition: background-color 0.3s, color 0.3s;
@@ -55,10 +55,7 @@ body {
   background-color: var(--section-bg-alt) !important;
 }
 
-.text-gray-800 {
-  color: var(--text-color) !important;
-}
-
+.text-gray-800,
 .text-gray-700 {
   color: var(--text-color) !important;
 }
@@ -86,7 +83,8 @@ body {
 }
 
 .shadow-md {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 html.dark .shadow-md {
@@ -116,7 +114,7 @@ body {
   color: var(--primary-color) !important;
 }
 .dark #mobile-menu button {
-  color: var(--primary-color) !important;
+  color: var(--primary-color) !importan
 }
 
 /* Mobile menu smooth open/close animation */
@@ -125,10 +123,11 @@ body {
   opacity: 0;
   transform: translateY(-10px);
   overflow: hidden;
-  transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s, transform 0.4s;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s,
+    transform 0.4s;
 }
 #mobile-menu.open {
   max-height: 500px;
   opacity: 1;
   transform: translateY(0);
-}
+} 

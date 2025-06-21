@@ -148,6 +148,40 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!window.db) {
     alert("تحذير: لم يتم تهيئة الاتصال بقاعدة البيانات (Firestore) بشكل صحيح. تأكد من إعداد firebaseConfig وترتيب السكريبتات.");
     console.warn("Firestore db is not initialized!");
+    return; // Stop execution if db is not available
+  }
+
+  // Seed initial plogs from HTML to Firestore for SEO
+  async function seedInitialPlogs() {
+    const initialPlogsDiv = document.getElementById("initial-plogs");
+    if (!initialPlogsDiv || !plogsRef) return;
+
+    const snapshot = await plogsRef.limit(1).get();
+    // Only seed if the collection is empty
+    if (!snapshot.empty) {
+      initialPlogsDiv.remove(); // Remove HTML data if DB is not empty
+      return;
+    }
+
+    console.log("Seeding initial plogs to Firestore...");
+    const plogItems = initialPlogsDiv.querySelectorAll(".plog-item");
+    const batch = window.db.batch();
+
+    plogItems.forEach(item => {
+      const title = item.dataset.title;
+      const content = item.querySelector('p').innerText;
+      if (title && content) {
+        const docRef = plogsRef.doc(); // Create a new doc reference
+        batch.set(docRef, {
+          title,
+          content,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+      }
+    });
+
+    await batch.commit();
+    initialPlogsDiv.remove(); // Clean up the initial data from the DOM
   }
 
   // Render plogs
@@ -194,9 +228,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Listen for real-time updates
   if (plogsRef) {
-    plogsRef.orderBy("createdAt", "desc").onSnapshot(snapshot => {
-      const plogs = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      renderPlogs(plogs);
+    seedInitialPlogs().then(() => {
+      plogsRef.orderBy("createdAt", "desc").onSnapshot(snapshot => {
+        const plogs = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        renderPlogs(plogs);
+      });
     });
   }
 
