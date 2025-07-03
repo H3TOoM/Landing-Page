@@ -198,6 +198,25 @@
     <div id="service-seo-section">
     </div>
   </main>
+  <nav aria-label="breadcrumb" class="mb-6" itemscope itemtype="https://schema.org/BreadcrumbList">
+    <ol class="flex flex-row-reverse gap-2 text-sm text-[#7B8C6D]">
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="index.html" itemprop="item"><span itemprop="name">الرئيسية</span></a>
+        <meta itemprop="position" content="1" />
+      </li>
+      <li>/</li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="index.html#services" itemprop="item"><span itemprop="name">خدماتنا</span></a>
+        <meta itemprop="position" content="2" />
+      </li>
+      <li>/</li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span itemprop="name" id="breadcrumb-service-name">تفاصيل الخدمة</span>
+        <meta itemprop="position" content="3" />
+      </li>
+    </ol>
+  </nav>
+ 
   <script>
     const services = {
       "cleaning": {
@@ -260,7 +279,6 @@
           coverage: "نغطي جميع أحياء الرياض ونوفر خدمة طوارئ في نفس اليوم.",
           faq: [
             {q: "هل النقل يشمل الفك والتركيب؟", a: "نعم، يمكن إضافة خدمة الفك والتركيب حسب الطلب."},
-            {q: "هل يوجد تأمين على الأثاث أثناء النقل؟", a: "نعم، نقدم تأميناً مجانياً ضد التلفيات أثناء النقل."},
             {q: "كم تستغرق عملية النقل؟", a: "من 2 إلى 8 ساعات حسب حجم العفش والمسافة."}
           ]
         }
@@ -279,7 +297,6 @@
           faq: [
             {q: "هل يمكن فك وتركيب جميع أنواع الأثاث؟", a: "نعم، نتعامل مع جميع الماركات والأنواع."},
             {q: "هل تقدمون خدمة التركيب فقط؟", a: "نعم، يمكن حجز خدمة التركيب فقط دون نقل."},
-            {q: "هل هناك ضمان على الخدمة؟", a: "نعم، نضمن سلامة الأثاث بعد التركيب."}
           ]
         }
       },
@@ -295,7 +312,6 @@
           team: "فنيون معتمدون، أجهزة قياس وضبط ضغط الفريون، التزام بمعايير السلامة.",
           coverage: "خدمة متوفرة في جميع أحياء الرياض مع استجابة سريعة.",
           faq: [
-            {q: "هل تقدمون ضمان على التركيب؟", a: "نعم، نقدم ضماناً لمدة سنة على التركيب."},
             {q: "هل توفرون غاز الفريون؟", a: "نوفر غاز الفريون الأصلي عند الحاجة."},
             {q: "هل يمكن فك المكيف بدون تلف المواسير؟", a: "نعم، نستخدم أدوات متخصصة للحفاظ على المواسير والتوصيلات."}
           ]
@@ -310,11 +326,9 @@
           h2: "نقل الأجهزة الكهربائية الثقيلة بأمان في الرياض",
           longdesc: "نحن متخصصون في نقل الأجهزة الكهربائية الثقيلة مثل الثلاجات، الغسالات، الأفران، والمجمدات. نستخدم عربات وأحزمة نقل مخصصة ونوفر حماية كاملة للأجهزة من الخدوش أو الصدمات. نقدم خدمة فك وتركيب الأجهزة عند الحاجة.",
           cases: ["نقل الأجهزة عند الانتقال لمنزل جديد.","شراء أجهزة كهربائية جديدة.","إعادة ترتيب الأجهزة داخل المنزل."],
-          team: "فريق مدرب على حمل ونقل الأجهزة الثقيلة، أدوات نقل متخصصة، تأمين على الأجهزة أثناء النقل.",
           coverage: "نخدم جميع مناطق الرياض ونوفر خدمة عاجلة في نفس اليوم.",
           faq: [
             {q: "هل النقل يشمل الفك والتركيب؟", a: "نعم، يمكن إضافة خدمة الفك والتركيب حسب نوع الجهاز."},
-            {q: "هل هناك تأمين على الأجهزة؟", a: "نعم، نقدم تأميناً مجانياً ضد التلفيات أثناء النقل."},
             {q: "هل يمكن نقل الأجهزة بين الأدوار؟", a: "نعم، لدينا معدات خاصة لنقل الأجهزة بين الطوابق."}
           ]
         }
@@ -374,6 +388,7 @@
       };
       document.getElementById('service-schema').textContent = JSON.stringify(serviceSchema, null, 2);
     }
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html> 

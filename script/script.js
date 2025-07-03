@@ -513,10 +513,21 @@ window.addEventListener('DOMContentLoaded', async () => {
     if (snapshot.empty) {
       swiperWrapper.innerHTML = `<div class='text-center text-gray-400 py-12'>لا توجد تقييمات بعد. كن أول من يشارك رأيه!</div>`;
       if (window.swiper && window.swiper.update) window.swiper.update();
+      // أضف مخطط schema فارغ
+      updateTestimonialsSchema([]);
       return;
     }
+    const allTestimonials = [];
     snapshot.forEach(doc => {
       const data = doc.data();
+      allTestimonials.push({
+        name: data.name,
+        comment: data.comment,
+        img: data.img,
+        title: data.title,
+        rating: data.rating,
+        id: doc.id
+      });
       addTestimonialToSwiper({
         name: data.name,
         comment: data.comment,
@@ -527,7 +538,51 @@ window.addEventListener('DOMContentLoaded', async () => {
       });
     });
     if (window.swiper && window.swiper.update) window.swiper.update();
+    // أضف مخطط schema
+    updateTestimonialsSchema(allTestimonials);
   } catch (err) {
     swiperWrapper.innerHTML = `<div class='text-center text-red-500 py-12'>حدث خطأ أثناء تحميل التقييمات!</div>`;
+    updateTestimonialsSchema([]);
   }
 });
+
+// توليد كود schema.org Review/AggregateRating
+function updateTestimonialsSchema(testimonials) {
+  const schemaEl = document.getElementById('testimonials-schema');
+  if (!schemaEl) return;
+  if (!testimonials.length) {
+    schemaEl.textContent = '';
+    return;
+  }
+  // حساب المتوسط وعدد التقييمات
+  const ratings = testimonials.map(t => Number(t.rating) || 5);
+  const avgRating = (ratings.reduce((a, b) => a + b, 0) / ratings.length).toFixed(2);
+  const reviewCount = ratings.length;
+  // عينة من أول 3 تقييمات
+  const reviews = testimonials.slice(0, 3).map(t => ({
+    "@type": "Review",
+    "author": t.name,
+    "reviewBody": t.comment,
+    "name": t.title,
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": t.rating || 5,
+      "bestRating": 5,
+      "worstRating": 1
+    }
+  }));
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "شركة الهرم للنقل - تقييمات العملاء",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": avgRating,
+      "reviewCount": reviewCount,
+      "bestRating": 5,
+      "worstRating": 1
+    },
+    "review": reviews
+  };
+  schemaEl.textContent = JSON.stringify(schema, null, 2);
+}

@@ -21,7 +21,7 @@
     <loc>https://alharm-truck.netlify.app/#testimonials</loc>
     <priority>0.8</priority>
   </url>
-    <url>
+  <url>
     <loc>https://alharm-truck.netlify.app/#plogs</loc>
     <priority>0.7</priority>
   </url>
@@ -29,12 +29,42 @@
     <loc>https://alharm-truck.netlify.app/#faq</loc>
     <priority>0.8</priority>
   </url>
-    <url>
+  <url>
     <loc>https://alharm-truck.netlify.app/#map</loc>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://alharm-truck.netlify.app/#contact</loc>
     <priority>0.9</priority>
+  </url>
+  <!-- روابط صفحات الخدمات -->
+  <url>
+    <loc>https://alharm-truck.netlify.app/service.html?type=packing</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://alharm-truck.netlify.app/service.html?type=local-moving</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://alharm-truck.netlify.app/service.html?type=furniture</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://alharm-truck.netlify.app/service.html?type=ac</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://alharm-truck.netlify.app/service.html?type=cleaning</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://alharm-truck.netlify.app/service.html?type=heavy-appliances</loc>
+    <priority>0.9</priority>
+  </url>
+  <!-- روابط تدوينات المدونة (plogs) -->
+  <url>
+    <loc>https://alharm-truck.netlify.app/#plogs</loc>
+    <priority>0.7</priority>
   </url>
 </urlset> 
