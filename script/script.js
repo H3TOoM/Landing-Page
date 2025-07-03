@@ -339,3 +339,195 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 console.log(typeof firebase, typeof firebase.firestore);
+
+// ====== Testimonial Modal Logic ======
+const addTestimonialBtn = document.getElementById('add-testimonial-btn');
+const testimonialModal = document.getElementById('testimonial-modal');
+const closeTestimonialModal = document.getElementById('close-testimonial-modal');
+const testimonialForm = document.getElementById('testimonial-form');
+const testimonialImgInput = document.getElementById('testimonial-img');
+const testimonialImgPreview = document.getElementById('testimonial-img-preview');
+const testimonialName = document.getElementById('testimonial-name');
+const testimonialComment = document.getElementById('testimonial-comment');
+const testimonialTitle = document.getElementById('testimonial-title');
+const testimonialRating = document.getElementById('testimonial-rating');
+const testimonialStars = document.getElementById('testimonial-stars');
+
+let testimonialImgFile = null;
+
+if (addTestimonialBtn && testimonialModal && closeTestimonialModal) {
+  addTestimonialBtn.onclick = () => {
+    testimonialModal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  };
+  closeTestimonialModal.onclick = () => {
+    testimonialModal.style.display = 'none';
+    document.body.style.overflow = '';
+    testimonialForm.reset();
+    testimonialImgPreview.innerHTML = '<i class="fas fa-user"></i>';
+    testimonialImgPreview.classList.remove('bg-cover');
+    testimonialImgFile = null;
+  };
+  testimonialModal.onclick = (e) => {
+    if (e.target === testimonialModal) closeTestimonialModal.onclick();
+  };
+}
+
+if (testimonialImgInput && testimonialImgPreview) {
+  testimonialImgInput.onchange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        testimonialImgPreview.style.backgroundImage = `url('${ev.target.result}')`;
+        testimonialImgPreview.innerHTML = '';
+        testimonialImgPreview.classList.add('bg-cover');
+      };
+      reader.readAsDataURL(file);
+      testimonialImgFile = file;
+    } else {
+      testimonialImgPreview.innerHTML = '<i class="fas fa-user"></i>';
+      testimonialImgPreview.style.backgroundImage = '';
+      testimonialImgPreview.classList.remove('bg-cover');
+      testimonialImgFile = null;
+    }
+  };
+}
+
+if (testimonialStars && testimonialRating) {
+  testimonialStars.addEventListener('click', function (e) {
+    if (e.target.classList.contains('star')) {
+      const val = parseInt(e.target.getAttribute('data-value'));
+      testimonialRating.value = val;
+      updateStars(val);
+    }
+  });
+  testimonialStars.addEventListener('mouseover', function (e) {
+    if (e.target.classList.contains('star')) {
+      updateStars(parseInt(e.target.getAttribute('data-value')));
+    }
+  });
+  testimonialStars.addEventListener('mouseleave', function () {
+    updateStars(parseInt(testimonialRating.value));
+  });
+  function updateStars(val) {
+    Array.from(testimonialStars.children).forEach(star => {
+      const starVal = parseInt(star.getAttribute('data-value'));
+      if (starVal <= val) {
+        star.classList.remove('fa-regular');
+        star.classList.add('fa-solid', 'text-yellow-400');
+      } else {
+        star.classList.add('fa-regular');
+        star.classList.remove('fa-solid', 'text-yellow-400');
+      }
+    });
+  }
+  updateStars(parseInt(testimonialRating.value));
+}
+
+if (testimonialForm) {
+  testimonialForm.onsubmit = async (e) => {
+    e.preventDefault();
+    const name = testimonialName.value.trim();
+    const comment = testimonialComment.value.trim();
+    const title = testimonialTitle.value.trim();
+    const rating = parseInt(testimonialRating.value) || 5;
+    if (!name || !comment || !title) return;
+    let imgUrl = '';
+    // رفع الصورة إلى Firebase Storage إذا وجدت
+    if (testimonialImgFile) {
+      try {
+        const storageRef = firebase.storage().ref();
+        const fileRef = storageRef.child('testimonials/' + Date.now() + '_' + testimonialImgFile.name);
+        await fileRef.put(testimonialImgFile);
+        imgUrl = await fileRef.getDownloadURL();
+      } catch (err) {
+        alert('حدث خطأ أثناء رفع الصورة!');
+        return;
+      }
+    }
+    // حفظ الرأي في Firestore
+    try {
+      const docRef = await window.db.collection('testimonials').add({
+        name,
+        comment,
+        title,
+        rating,
+        img: imgUrl,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      });
+      // أضف الرأي الجديد مباشرة للـ swiper
+      addTestimonialToSwiper({ name, comment, img: imgUrl, title, rating, id: docRef.id });
+      testimonialModal.style.display = 'none';
+      document.body.style.overflow = '';
+      testimonialForm.reset();
+      testimonialImgPreview.innerHTML = '<i class="fas fa-user"></i>';
+      testimonialImgPreview.style.backgroundImage = '';
+      testimonialImgPreview.classList.remove('bg-cover');
+      testimonialImgFile = null;
+      updateStars(5);
+      testimonialRating.value = 5;
+    } catch (err) {
+      alert('حدث خطأ أثناء حفظ الرأي!');
+    }
+  };
+}
+
+// إضافة الرأي الجديد للـ swiper مباشرة
+function addTestimonialToSwiper({ name, comment, img, title, rating, id }) {
+  const swiperWrapper = document.querySelector('.swiper-wrapper');
+  if (!swiperWrapper) return;
+  const slide = document.createElement('div');
+  slide.className = 'swiper-slide group relative';
+  slide.innerHTML = `
+    <div class="bg-white rounded-3xl shadow-xl p-8 flex flex-col items-center text-center max-w-md mx-auto hover:shadow-2xl transition duration-300 relative">
+      ${img ? `<img src="${img}" alt="${name}" class="w-24 h-24 rounded-full border-4 border-white shadow-md -mt-20 mb-4 object-cover" />` : `<span class="w-24 h-24 rounded-full border-4 border-white shadow-md -mt-20 mb-4 flex items-center justify-center bg-gray-100 text-4xl text-gray-400"><i class="fas fa-user"></i></span>`}
+      <h4 class="mt-2 font-bold text-[#7B8C6D] text-lg">${title || ''}</h4>
+      <p class="text-gray-600 text-sm italic leading-relaxed">"${comment}"</p>
+      <div class="flex justify-center mt-2 text-yellow-400">
+        ${renderStars(rating || 5)}
+      </div>
+      <div class="mt-2 font-bold text-gray-800 text-base">${name}</div>
+      <span class="text-sm text-[#7B8C6D]">عميل جديد</span>
+    </div>
+  `;
+  swiperWrapper.prepend(slide);
+  if (window.swiper && window.swiper.update) window.swiper.update();
+}
+
+function renderStars(rating) {
+  let html = '';
+  for (let i = 1; i <= 5; i++) {
+    html += `<i class="fa-star ${i <= rating ? 'fas text-yellow-400' : 'far'}"></i>`;
+  }
+  return html;
+}
+
+// ====== جلب التقييمات من فايربيز عند تحميل الصفحة ======
+window.addEventListener('DOMContentLoaded', async () => {
+  const swiperWrapper = document.querySelector('.swiper-wrapper');
+  if (!swiperWrapper) return;
+  swiperWrapper.innerHTML = '';
+  try {
+    const snapshot = await window.db.collection('testimonials').orderBy('createdAt', 'desc').get();
+    if (snapshot.empty) {
+      swiperWrapper.innerHTML = `<div class='text-center text-gray-400 py-12'>لا توجد تقييمات بعد. كن أول من يشارك رأيه!</div>`;
+      if (window.swiper && window.swiper.update) window.swiper.update();
+      return;
+    }
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      addTestimonialToSwiper({
+        name: data.name,
+        comment: data.comment,
+        img: data.img,
+        title: data.title,
+        rating: data.rating,
+        id: doc.id
+      });
+    });
+    if (window.swiper && window.swiper.update) window.swiper.update();
+  } catch (err) {
+    swiperWrapper.innerHTML = `<div class='text-center text-red-500 py-12'>حدث خطأ أثناء تحميل التقييمات!</div>`;
+  }
+});
