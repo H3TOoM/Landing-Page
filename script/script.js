@@ -146,42 +146,80 @@ document.addEventListener("DOMContentLoaded", function () {
   // Helper: Firestore collection
   const plogsRef = window.db ? window.db.collection("plogs") : null;
   if (!window.db) {
-    alert("تحذير: لم يتم تهيئة الاتصال بقاعدة البيانات (Firestore) بشكل صحيح. تأكد من إعداد firebaseConfig وترتيب السكريبتات.");
+    // alert("تحذير: لم يتم تهيئة الاتصال بقاعدة البيانات (Firestore) بشكل صحيح. تأكد من إعداد firebaseConfig وترتيب السكريبتات.");
     console.warn("Firestore db is not initialized!");
     return; // Stop execution if db is not available
   }
 
   // Seed initial plogs from HTML to Firestore for SEO
   async function seedInitialPlogs() {
-    const initialPlogsDiv = document.getElementById("initial-plogs");
-    if (!initialPlogsDiv || !plogsRef) return;
-
-    const snapshot = await plogsRef.limit(1).get();
-    // Only seed if the collection is empty
-    if (!snapshot.empty) {
-      initialPlogsDiv.remove(); // Remove HTML data if DB is not empty
-      return;
-    }
+    if (!plogsRef) return;
 
     console.log("Seeding initial plogs to Firestore...");
-    const plogItems = initialPlogsDiv.querySelectorAll(".plog-item");
+    
+    // Default blog posts if HTML data is not available
+    const defaultPlogs = [
+      {
+        title: "5 نصائح ذهبية لاختيار أفضل شركة نقل عفش بالرياض",
+        content: `الانتقال إلى منزل جديد في الرياض يمكن أن يكون مهمة مرهقة، واختيار شركة نقل العفش المناسبة هو مفتاح التجربة الناجحة. إليك 5 نصائح لمساعدتك:
+
+1. **البحث والمقارنة:** لا تعتمد على أول شركة تجدها. ابحث عن 3-4 شركات نقل عفش بالرياض وقارن بين خدماتهم وأسعارهم.
+
+2. **قراءة تقييمات العملاء:** التقييمات على جوجل أو مواقع التواصل الاجتماعي تعطيك فكرة حقيقية عن جودة الخدمة.
+
+3. **التأكد من التراخيص:** اختر شركة نقل أثاث مرخصة لضمان حقوقك وسلامة ممتلكاتك.
+
+4. **طلب عرض سعر مكتوب:** اطلب تفاصيل التكلفة شاملة (تغليف، نقل، فك وتركيب) لتجنب أي رسوم مفاجئة.
+
+5. **خدمات التغليف:** تأكد من أن الشركة تستخدم مواد تغليف عالية الجودة لحماية الأثاث من الخدوش والكسر.
+
+باتباع هذه النصائح، ستضمن تجربة نقل عفش آمنة ومريحة داخل الرياض.`
+      },
+      {
+        title: "خطوات تغليف الأثاث باحترافية لضمان نقله بأمان",
+        content: `تغليف الأثاث بشكل صحيح هو أهم خطوة لضمان وصوله سليمًا. شركة الهرم للنقل تقدم لك هذه الخطوات الأساسية:
+
+- **تجهيز المواد:** ستحتاج إلى (كراتين مقواة، بلاستيك الفقاعات، شريط لاصق، وأغطية واقية).
+
+- **تفكيك القطع الكبيرة:** قم بفك أرجل الطاولات والمكاتب لسهولة النقل والتغليف.
+
+- **تغليف القطع الزجاجية:** استخدم بلاستيك الفقاعات بشكل مكثف حول المرايا والألواح الزجاجية وضعها في كراتين مسطحة.
+
+- **حماية الأجهزة الكهربائية:** استخدم كراتينها الأصلية إن أمكن، أو اغلفها ببطانيات وبلاستيك الفقاعات.
+
+- **كتابة المحتويات:** اكتب على كل كرتونة محتوياتها والغرفة التابعة لها لتسهيل عملية التفريغ.
+
+هذه الخطوات تضمن لك نقل أثاثك بأمان تام، وهي جزء من خدمتنا الاحترافية في نقل العفش داخل الرياض.`
+      },
+      {
+        title: "كم تكلفة نقل العفش داخل أحياء الرياض؟",
+        content: `تعتمد تكلفة نقل العفش داخل الرياض على عدة عوامل أساسية، وفهمها يساعدك في الحصول على أفضل سعر:
+
+- **حجم العفش:** عدد الغرف وكمية الأثاث هو العامل الأكبر في تحديد السعر.
+
+- **المسافة بين الموقعين:** تكلفة النقل من شمال الرياض إلى جنوبها تختلف عن النقل في نفس الحي.
+
+- **الطابق:** النقل من وإلى الأدوار المرتفعة قد يزيد من التكلفة إذا تطلب معدات خاصة.
+
+- **خدمات إضافية:** هل تحتاج إلى فك وتركيب مكيفات اسبلت أو تغليف خاص للقطع الثمينة؟
+
+للحصول على عرض سعر دقيق، تواصل مع شركة نقل عفش موثوقة في الرياض مثل شركة الهرم وقدم لهم كل هذه التفاصيل. نحن نقدم أسعارًا تنافسية وخدمة شفافة.`
+      }
+    ];
+
     const batch = window.db.batch();
 
-    plogItems.forEach(item => {
-      const title = item.dataset.title;
-      const content = item.querySelector('p').innerText;
-      if (title && content) {
-        const docRef = plogsRef.doc(); // Create a new doc reference
-        batch.set(docRef, {
-          title,
-          content,
-          createdAt: firebase.firestore.FieldValue.serverTimestamp()
-        });
-      }
+    defaultPlogs.forEach(plog => {
+      const docRef = plogsRef.doc(); // Create a new doc reference
+      batch.set(docRef, {
+        title: plog.title,
+        content: plog.content,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
     });
 
     await batch.commit();
-    initialPlogsDiv.remove(); // Clean up the initial data from the DOM
+    console.log("Initial plogs seeded successfully!");
   }
 
   // Render plogs
@@ -228,12 +266,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Listen for real-time updates
   if (plogsRef) {
-    seedInitialPlogs().then(() => {
+    // Check if we need to seed initial data and set up listener
+    (async () => {
+      const snapshot = await plogsRef.limit(1).get();
+      if (snapshot.empty) {
+        // Only seed if collection is empty
+        await seedInitialPlogs();
+      }
+      
+      // Set up real-time listener
       plogsRef.orderBy("createdAt", "desc").onSnapshot(snapshot => {
         const plogs = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
         renderPlogs(plogs);
       });
-    });
+    })();
   }
 
   // Confirm modal logic
@@ -503,7 +549,7 @@ function renderStars(rating) {
   return html;
 }
 
-// ====== جلب التقييمات من فايربيز عند تحميل الصفحة ======
+// ====== fetch data from firbase ======
 window.addEventListener('DOMContentLoaded', async () => {
   const swiperWrapper = document.querySelector('.swiper-wrapper');
   if (!swiperWrapper) return;
@@ -513,7 +559,6 @@ window.addEventListener('DOMContentLoaded', async () => {
     if (snapshot.empty) {
       swiperWrapper.innerHTML = `<div class='text-center text-gray-400 py-12'>لا توجد تقييمات بعد. كن أول من يشارك رأيه!</div>`;
       if (window.swiper && window.swiper.update) window.swiper.update();
-      // أضف مخطط schema فارغ
       updateTestimonialsSchema([]);
       return;
     }
@@ -586,3 +631,147 @@ function updateTestimonialsSchema(testimonials) {
   };
   schemaEl.textContent = JSON.stringify(schema, null, 2);
 }
+
+// ========== Service Modal Logic ==========
+document.addEventListener("DOMContentLoaded", function () {
+  const serviceModal = document.getElementById("service-modal");
+  const closeServiceModal = document.getElementById("close-service-modal");
+  
+  // بيانات الخدمات
+  const servicesData = {
+    'packing': {
+      title: 'تغليف العفش',
+      icon: 'fas fa-box',
+      description: 'نوفر خدمة تغليف احترافية ومتخصصة لجميع أنواع الأثاث والعفش باستخدام أحدث المواد والتقنيات لضمان الحماية الكاملة أثناء النقل.',
+      features: [
+        'استخدام مواد تغليف عالية الجودة',
+        'تغليف خاص للقطع الزجاجية والمرايا',
+        'تغليف الأجهزة الكهربائية بمواد واقية',
+        'تغليف الأثاث الخشبي ببطانيات خاصة',
+        'تغليف الكتب والأغراض الصغيرة في كراتين مقواة',
+        'كتابة محتويات كل كرتونة للسهولة'
+      ],
+      pricing: 'أسعار التغليف تبدأ من 50 ريال للغرفة الواحدة، مع خصومات خاصة للشقق الكاملة.'
+    },
+    'local-moving': {
+      title: 'نقل داخلي',
+      icon: 'fas fa-truck',
+      description: 'خدمة نقل احترافية داخل مدينة الرياض بالكامل، مع سيارات مجهزة خصيصاً لنقل الأثاث وفريق عمل مدرب ومحترف.',
+      features: [
+        'سيارات مجهزة خصيصاً لنقل الأثاث',
+        'سائقين محترفين ومدربين',
+        'خدمة متوفرة 24/7',
+        'نقل آمن وسريع داخل الرياض',
+        'تأمين شامل على الأثاث',
+        'التزام بالمواعيد المحددة'
+      ],
+      pricing: 'أسعار النقل الداخلي تبدأ من 200 ريال حسب المسافة وحجم الأثاث، مع عروض خاصة للشقق الكاملة.'
+    },
+    'furniture': {
+      title: 'فك وتركيب الأثاث',
+      icon: 'fas fa-tools',
+      description: 'فريق متخصص من الفنيين المحترفين في فك وتركيب جميع أنواع الأثاث بكل دقة وأمان، مع ضمان سلامة القطع.',
+      features: [
+        'فنيون متخصصون في فك وتركيب الأثاث',
+        'أدوات حديثة ومتخصصة',
+        'فك وتركيب جميع أنواع الأثاث',
+        'ضمان سلامة القطع أثناء العمل',
+        'تركيب دقيق ومحترف',
+        'خدمة سريعة وفعالة'
+      ],
+      pricing: 'أسعار فك وتركيب الأثاث تبدأ من 100 ريال حسب نوع وكمية الأثاث.'
+    },
+    'ac': {
+      title: 'فك وتركيب مكيفات اسبلت',
+      icon: 'fas fa-snowflake',
+      description: 'خدمة فك وتركيب مكيفات الاسبلت باحترافية عالية، مع ضمان سلامة الأجهزة والتوصيلات الكهربائية.',
+      features: [
+        'فنيون متخصصون في المكيفات',
+        'فك آمن للمكيفات بدون تلف',
+        'تركيب احترافي مع ضمان الجودة',
+        'فحص التوصيلات الكهربائية',
+        'تنظيف المكيفات أثناء التركيب',
+        'ضمان على العمل لمدة شهر'
+      ],
+      pricing: 'أسعار فك وتركيب المكيفات تبدأ من 150 ريال للمكيف الواحد.'
+    },
+    'cleaning': {
+      title: 'تنظيف الوحدات السكنية والمنشآت الإدارية',
+      icon: 'fas fa-broom',
+      description: 'خدمة تنظيف شاملة ومتخصصة للوحدات السكنية والمنشآت الإدارية بأحدث المعدات ومواد التنظيف الآمنة.',
+      features: [
+        'تنظيف شامل للغرف والحمامات',
+        'تنظيف المطابخ والأجهزة',
+        'تنظيف النوافذ والمرايا',
+        'تنظيف الأرضيات والسجاد',
+        'مواد تنظيف آمنة وصديقة للبيئة',
+        'فريق تنظيف مدرب ومحترف'
+      ],
+      pricing: 'أسعار التنظيف تبدأ من 300 ريال للشقة الصغيرة، مع عروض خاصة للشقق الكبيرة والمنشآت.'
+    },
+    'heavy-appliances': {
+      title: 'نقل الأجهزة الكهربائية الثقيلة',
+      icon: 'fas fa-plug',
+      description: 'خدمة نقل متخصصة للأجهزة الكهربائية الكبيرة مثل الثلاجات والغسالات باحترافية وأمان تام.',
+      features: [
+        'فريق متخصص في نقل الأجهزة الثقيلة',
+        'معدات حديثة لرفع الأجهزة',
+        'نقل آمن للثلاجات والغسالات',
+        'فك وتركيب الأجهزة الكهربائية',
+        'فحص الأجهزة بعد التركيب',
+        'ضمان سلامة الأجهزة أثناء النقل'
+      ],
+      pricing: 'أسعار نقل الأجهزة الكهربائية تبدأ من 80 ريال للجهاز الواحد.'
+    }
+  };
+
+  // دالة فتح النافذة المنبثقة
+  window.openServiceModal = function(serviceType) {
+    const service = servicesData[serviceType];
+    if (!service) return;
+
+    // تحديث محتوى النافذة المنبثقة
+    document.getElementById('service-modal-title').textContent = service.title;
+    document.getElementById('service-modal-icon').innerHTML = `<i class="${service.icon}"></i>`;
+    document.getElementById('service-modal-description').textContent = service.description;
+    
+    // تحديث المميزات
+    const featuresList = document.getElementById('service-modal-features-list');
+    featuresList.innerHTML = service.features.map(feature => 
+      `<li class="flex items-start gap-2"><i class="fas fa-check text-green-500 mt-1"></i><span>${feature}</span></li>`
+    ).join('');
+    
+    // تحديث الأسعار
+    document.getElementById('service-modal-pricing-text').textContent = service.pricing;
+    
+    // عرض النافذة المنبثقة
+    serviceModal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  };
+
+  // إغلاق النافذة المنبثقة
+  if (closeServiceModal) {
+    closeServiceModal.addEventListener('click', function() {
+      serviceModal.style.display = 'none';
+      document.body.style.overflow = '';
+    });
+  }
+
+  // إغلاق النافذة المنبثقة عند النقر خارجها
+  if (serviceModal) {
+    serviceModal.addEventListener('click', function(e) {
+      if (e.target === serviceModal) {
+        serviceModal.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    });
+  }
+
+  // إغلاق النافذة المنبثقة بمفتاح ESC
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && serviceModal.style.display === 'flex') {
+      serviceModal.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  });
+});

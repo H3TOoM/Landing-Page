@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
@@ -224,46 +223,94 @@
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
         <!-- كارت خدمة: تغليف العفش -->
-        <div class="bg-white rounded-2xl shadow-md hover:shadow-2xl transition-transform duration-300 hover:-translate-y-2 flex flex-col items-center p-6 group">
-          <img src="https://images.pexels.com/photos/7464707/pexels-photo-7464707.jpeg?auto=compress&w=120&h=120&fit=crop" alt="تغليف العفش" class="w-20 h-20 object-cover rounded-full shadow mb-4 border-4 border-[#7B8C6D] group-hover:scale-110 transition" loading="lazy" />
+        <div
+          class="bg-white rounded-2xl shadow-md hover:shadow-2xl transition-transform duration-300 hover:-translate-y-2 flex flex-col items-center p-6 group">
+          <img
+            src="https://images.pexels.com/photos/7464707/pexels-photo-7464707.jpeg?auto=compress&w=120&h=120&fit=crop"
+            alt="تغليف العفش"
+            class="w-20 h-20 object-cover rounded-full shadow mb-4 border-4 border-[#7B8C6D] group-hover:scale-110 transition"
+            loading="lazy" />
           <h3 class="text-xl font-bold text-[#7B8C6D] mb-2">تغليف العفش</h3>
-          <p class="text-gray-600 text-sm mb-4 text-center">نوفر أفضل وسائل تغليف تحافظ على العفش من الكسر أو الخدوش أثناء النقل.</p>
-          <a href="service.html?type=packing" class="mt-auto px-5 py-2 rounded-full bg-[#7B8C6D] text-white font-semibold hover:bg-[#657458] transition">تعرف أكثر</a>
+          <p class="text-gray-600 text-sm mb-4 text-center">نوفر أفضل وسائل تغليف تحافظ على العفش من الكسر أو الخدوش
+            أثناء النقل.</p>
+          <button onclick="openServiceModal('packing')"
+            class="mt-auto px-5 py-2 rounded-full bg-[#7B8C6D] text-white font-semibold hover:bg-[#657458] transition">تعرف
+            أكثر</button>
         </div>
         <!-- كارت خدمة: نقل داخلي -->
-        <div class="bg-white rounded-2xl shadow-md hover:shadow-2xl transition-transform duration-300 hover:-translate-y-2 flex flex-col items-center p-6 group">
-          <img src="https://images.pexels.com/photos/7464705/pexels-photo-7464705.jpeg?auto=compress&w=120&h=120&fit=crop" alt="نقل داخلي" class="w-20 h-20 object-cover rounded-full shadow mb-4 border-4 border-[#7B8C6D] group-hover:scale-110 transition" loading="lazy" />
+        <div
+          class="bg-white rounded-2xl shadow-md hover:shadow-2xl transition-transform duration-300 hover:-translate-y-2 flex flex-col items-center p-6 group">
+          <img
+            src="https://images.pexels.com/photos/7464705/pexels-photo-7464705.jpeg?auto=compress&w=120&h=120&fit=crop"
+            alt="نقل داخلي"
+            class="w-20 h-20 object-cover rounded-full shadow mb-4 border-4 border-[#7B8C6D] group-hover:scale-110 transition"
+            loading="lazy" />
           <h3 class="text-xl font-bold text-[#7B8C6D] mb-2">نقل داخلي</h3>
-          <p class="text-gray-600 text-sm mb-4 text-center">خدمات نقل داخل الرياض بالكامل بسيارات مجهزة وسائقين محترفين.</p>
-          <a href="service.html?type=local-moving" class="mt-auto px-5 py-2 rounded-full bg-[#7B8C6D] text-white font-semibold hover:bg-[#657458] transition">تعرف أكثر</a>
+          <p class="text-gray-600 text-sm mb-4 text-center">خدمات نقل داخل الرياض بالكامل بسيارات مجهزة وسائقين محترفين.
+          </p>
+          <button onclick="openServiceModal('local-moving')"
+            class="mt-auto px-5 py-2 rounded-full bg-[#7B8C6D] text-white font-semibold hover:bg-[#657458] transition">تعرف
+            أكثر</button>
         </div>
         <!-- كارت خدمة: فك وتركيب الأثاث -->
-        <div class="bg-white rounded-2xl shadow-md hover:shadow-2xl transition-transform duration-300 hover:-translate-y-2 flex flex-col items-center p-6 group">
-          <img src="https://images.pexels.com/photos/4246094/pexels-photo-4246094.jpeg?auto=compress&w=120&h=120&fit=crop" alt="فك وتركيب الأثاث" class="w-20 h-20 object-cover rounded-full shadow mb-4 border-4 border-[#7B8C6D] group-hover:scale-110 transition" loading="lazy" />
+        <div
+          class="bg-white rounded-2xl shadow-md hover:shadow-2xl transition-transform duration-300 hover:-translate-y-2 flex flex-col items-center p-6 group">
+          <img
+            src="https://images.pexels.com/photos/4246094/pexels-photo-4246094.jpeg?auto=compress&w=120&h=120&fit=crop"
+            alt="فك وتركيب الأثاث"
+            class="w-20 h-20 object-cover rounded-full shadow mb-4 border-4 border-[#7B8C6D] group-hover:scale-110 transition"
+            loading="lazy" />
           <h3 class="text-xl font-bold text-[#7B8C6D] mb-2">فك وتركيب الأثاث</h3>
-          <p class="text-gray-600 text-sm mb-4 text-center">لدينا فنيون متخصصون في فك وتركيب جميع أنواع الأثاث بكل دقة وأمان.</p>
-          <a href="service.html?type=furniture" class="mt-auto px-5 py-2 rounded-full bg-[#7B8C6D] text-white font-semibold hover:bg-[#657458] transition">تعرف أكثر</a>
+          <p class="text-gray-600 text-sm mb-4 text-center">لدينا فنيون متخصصون في فك وتركيب جميع أنواع الأثاث بكل دقة
+            وأمان.</p>
+          <button onclick="openServiceModal('furniture')"
+            class="mt-auto px-5 py-2 rounded-full bg-[#7B8C6D] text-white font-semibold hover:bg-[#657458] transition">تعرف
+            أكثر</button>
         </div>
         <!-- كارت خدمة: فك وتركيب مكيفات اسبلت -->
-        <div class="bg-white rounded-2xl shadow-md hover:shadow-2xl transition-transform duration-300 hover:-translate-y-2 flex flex-col items-center p-6 group">
-          <img src="https://images.pexels.com/photos/4792470/pexels-photo-4792470.jpeg?auto=compress&w=120&h=120&fit=crop" alt="فك وتركيب مكيفات اسبلت" class="w-20 h-20 object-cover rounded-full shadow mb-4 border-4 border-[#7B8C6D] group-hover:scale-110 transition" loading="lazy" />
+        <div
+          class="bg-white rounded-2xl shadow-md hover:shadow-2xl transition-transform duration-300 hover:-translate-y-2 flex flex-col items-center p-6 group">
+          <img
+            src="https://images.pexels.com/photos/4792470/pexels-photo-4792470.jpeg?auto=compress&w=120&h=120&fit=crop"
+            alt="فك وتركيب مكيفات اسبلت"
+            class="w-20 h-20 object-cover rounded-full shadow mb-4 border-4 border-[#7B8C6D] group-hover:scale-110 transition"
+            loading="lazy" />
           <h3 class="text-xl font-bold text-[#7B8C6D] mb-2">فك و تركيب مكيفات اسبلت</h3>
-          <p class="text-gray-600 text-sm mb-4 text-center">نقدم خدمة فك وتركيب مكيفات الاسبلت باحترافية عالية مع ضمان سلامة الأجهزة والتوصيلات.</p>
-          <a href="service.html?type=ac" class="mt-auto px-5 py-2 rounded-full bg-[#7B8C6D] text-white font-semibold hover:bg-[#657458] transition">تعرف أكثر</a>
+          <p class="text-gray-600 text-sm mb-4 text-center">نقدم خدمة فك وتركيب مكيفات الاسبلت باحترافية عالية مع ضمان
+            سلامة الأجهزة والتوصيلات.</p>
+          <button onclick="openServiceModal('ac')"
+            class="mt-auto px-5 py-2 rounded-full bg-[#7B8C6D] text-white font-semibold hover:bg-[#657458] transition">تعرف
+            أكثر</button>
         </div>
         <!-- كارت خدمة: تنظيف الوحدات السكنية والمنشآت الإدارية -->
-        <div class="bg-white rounded-2xl shadow-md hover:shadow-2xl transition-transform duration-300 hover:-translate-y-2 flex flex-col items-center p-6 group">
-          <img src="https://images.pexels.com/photos/6197120/pexels-photo-6197120.jpeg?auto=compress&w=120&h=120&fit=crop" alt="تنظيف الوحدات السكنية والمنشآت الإدارية" class="w-20 h-20 object-cover rounded-full shadow mb-4 border-4 border-[#7B8C6D] group-hover:scale-110 transition" loading="lazy" />
+        <div
+          class="bg-white rounded-2xl shadow-md hover:shadow-2xl transition-transform duration-300 hover:-translate-y-2 flex flex-col items-center p-6 group">
+          <img
+            src="https://images.pexels.com/photos/6197120/pexels-photo-6197120.jpeg?auto=compress&w=120&h=120&fit=crop"
+            alt="تنظيف الوحدات السكنية والمنشآت الإدارية"
+            class="w-20 h-20 object-cover rounded-full shadow mb-4 border-4 border-[#7B8C6D] group-hover:scale-110 transition"
+            loading="lazy" />
           <h3 class="text-xl font-bold text-[#7B8C6D] mb-2">تنظيف الوحدات السكنية و المنشاة الإدارية</h3>
-          <p class="text-gray-600 text-sm mb-4 text-center">نوفر خدمات تنظيف شاملة للوحدات السكنية والمنشآت الإدارية بأحدث المعدات ومواد التنظيف الآمنة.</p>
-          <a href="service.html?type=cleaning" class="mt-auto px-5 py-2 rounded-full bg-[#7B8C6D] text-white font-semibold hover:bg-[#657458] transition">تعرف أكثر</a>
+          <p class="text-gray-600 text-sm mb-4 text-center">نوفر خدمات تنظيف شاملة للوحدات السكنية والمنشآت الإدارية
+            بأحدث المعدات ومواد التنظيف الآمنة.</p>
+          <button onclick="openServiceModal('cleaning')"
+            class="mt-auto px-5 py-2 rounded-full bg-[#7B8C6D] text-white font-semibold hover:bg-[#657458] transition">تعرف
+            أكثر</button>
         </div>
         <!-- كارت خدمة: نقل الأجهزة الكهربائية الثقيلة -->
-        <div class="bg-white rounded-2xl shadow-md hover:shadow-2xl transition-transform duration-300 hover:-translate-y-2 flex flex-col items-center p-6 group">
-          <img src="https://images.pexels.com/photos/7464706/pexels-photo-7464706.jpeg?auto=compress&w=120&h=120&fit=crop" alt="نقل الأجهزة الكهربائية الثقيلة" class="w-20 h-20 object-cover rounded-full shadow mb-4 border-4 border-[#7B8C6D] group-hover:scale-110 transition" loading="lazy" />
+        <div
+          class="bg-white rounded-2xl shadow-md hover:shadow-2xl transition-transform duration-300 hover:-translate-y-2 flex flex-col items-center p-6 group">
+          <img
+            src="https://images.pexels.com/photos/7464706/pexels-photo-7464706.jpeg?auto=compress&w=120&h=120&fit=crop"
+            alt="نقل الأجهزة الكهربائية الثقيلة"
+            class="w-20 h-20 object-cover rounded-full shadow mb-4 border-4 border-[#7B8C6D] group-hover:scale-110 transition"
+            loading="lazy" />
           <h3 class="text-xl font-bold text-[#7B8C6D] mb-2">نقل الأجهزة الكهربائية الثقيلة</h3>
-          <p class="text-gray-600 text-sm mb-4 text-center">نوفر خدمة نقل الأجهزة الكهربائية الكبيرة مثل الثلاجات والغسالات باحترافية وأمان تام مع فريق متخصص وأدوات حديثة.</p>
-          <a href="service.html?type=heavy-appliances" class="mt-auto px-5 py-2 rounded-full bg-[#7B8C6D] text-white font-semibold hover:bg-[#657458] transition">تعرف أكثر</a>
+          <p class="text-gray-600 text-sm mb-4 text-center">نوفر خدمة نقل الأجهزة الكهربائية الكبيرة مثل الثلاجات
+            والغسالات باحترافية وأمان تام مع فريق متخصص وأدوات حديثة.</p>
+          <button onclick="openServiceModal('heavy-appliances')"
+            class="mt-auto px-5 py-2 rounded-full bg-[#7B8C6D] text-white font-semibold hover:bg-[#657458] transition">تعرف
+            أكثر</button>
         </div>
       </div>
     </div>
@@ -281,27 +328,33 @@
         ماذا قالوا عنا عملاؤنا؟
       </h2>
       <div class="flex justify-center mb-8">
-        <button id="add-testimonial-btn" class="px-6 py-2 bg-[#7B8C6D] text-white rounded-full font-semibold hover:bg-[#657458] transition flex items-center gap-2">
+        <button id="add-testimonial-btn"
+          class="px-6 py-2 bg-[#7B8C6D] text-white rounded-full font-semibold hover:bg-[#657458] transition flex items-center gap-2">
           <i class="fas fa-plus"></i> أضف رأيك
         </button>
       </div>
 
       <!-- Modal لإضافة رأي جديد -->
-      <div id="testimonial-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black bg-opacity-40" style="display:none;">
+      <div id="testimonial-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black bg-opacity-40"
+        style="display:none;">
         <div class="bg-white rounded-lg shadow-2xl p-8 max-w-md w-full text-center relative">
-          <button id="close-testimonial-modal" class="absolute left-4 top-4 text-gray-400 hover:text-[#7B8C6D] text-2xl"><i class="fas fa-times"></i></button>
+          <button id="close-testimonial-modal"
+            class="absolute left-4 top-4 text-gray-400 hover:text-[#7B8C6D] text-2xl"><i
+              class="fas fa-times"></i></button>
           <h3 class="text-xl font-bold text-[#7B8C6D] mb-4">أضف رأيك</h3>
           <form id="testimonial-form" class="flex flex-col gap-4">
             <div class="flex flex-col items-center gap-2">
               <label for="testimonial-img" class="cursor-pointer">
-                <span id="testimonial-img-preview" class="inline-block w-20 h-20 rounded-full bg-gray-100 flex items-center justify-center text-3xl text-gray-400 border-2 border-[#7B8C6D] overflow-hidden">
+                <span id="testimonial-img-preview"
+                  class="inline-block w-20 h-20 rounded-full bg-gray-100 flex items-center justify-center text-3xl text-gray-400 border-2 border-[#7B8C6D] overflow-hidden">
                   <i class="fas fa-user"></i>
                 </span>
                 <input type="file" id="testimonial-img" accept="image/*" class="hidden" />
               </label>
               <span class="text-xs text-gray-500">صورة (اختياري)</span>
             </div>
-            <input type="text" id="testimonial-title" class="border rounded p-2 text-right" placeholder="العنوان" required />
+            <input type="text" id="testimonial-title" class="border rounded p-2 text-right" placeholder="العنوان"
+              required />
             <div class="flex flex-row-reverse justify-center gap-1 text-2xl mb-2" id="testimonial-stars">
               <i class="fa-regular fa-star star" data-value="5"></i>
               <i class="fa-regular fa-star star" data-value="4"></i>
@@ -310,9 +363,12 @@
               <i class="fa-regular fa-star star" data-value="1"></i>
             </div>
             <input type="hidden" id="testimonial-rating" value="5" />
-            <input type="text" id="testimonial-name" class="border rounded p-2 text-right" placeholder="اسمك" required />
-            <textarea id="testimonial-comment" class="border rounded p-2 text-right" placeholder="رأيك أو تجربتك" rows="3" required></textarea>
-            <button type="submit" class="bg-[#7B8C6D] text-white px-6 py-2 rounded hover:bg-[#657458] transition">إرسال</button>
+            <input type="text" id="testimonial-name" class="border rounded p-2 text-right" placeholder="اسمك"
+              required />
+            <textarea id="testimonial-comment" class="border rounded p-2 text-right" placeholder="رأيك أو تجربتك"
+              rows="3" required></textarea>
+            <button type="submit"
+              class="bg-[#7B8C6D] text-white px-6 py-2 rounded hover:bg-[#657458] transition">إرسال</button>
           </form>
         </div>
       </div>
@@ -473,7 +529,7 @@
         المدونة
       </h2>
       <!-- Add/Edit Form -->
-      <form id="plog-form" class="mb-8 max-w-xl mx-auto bg-white rounded-lg shadow-md p-6 flex flex-col gap-4"
+      <!-- <form id="plog-form" class="mb-8 max-w-xl mx-auto bg-white rounded-lg shadow-md p-6 flex flex-col gap-4"
         data-aos="fade-down" style="display:none;">
         <input type="hidden" id="plog-id" />
         <input type="text" id="plog-title" class="border rounded p-2 text-right" placeholder="عنوان التدوينة"
@@ -486,51 +542,56 @@
           <button type="button" id="plog-cancel"
             class="bg-gray-400 text-white px-6 py-2 rounded hover:bg-gray-500 transition">إلغاء</button>
         </div>
-      </form>
+      </form> -->
       <!-- Add Button -->
-      <button id="plog-add-btn"
+      <!-- <button id="plog-add-btn"
         class="mb-8 px-8 py-3 bg-[#7B8C6D] text-white rounded-full text-lg font-semibold hover:bg-[#657458] transition"
         data-aos="zoom-in">
         إضافة تدوينة جديدة
-      </button>
+      </button> -->
       <!-- Plogs List -->
       <div id="plogs-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- Plogs will be rendered here -->
       </div>
       <!-- Initial Plogs Data for SEO -->
       <div id="initial-plogs" style="display: none;">
-        <div class="plog-item" data-title="5 نصائح ذهبية لاختيار أفضل شركة نقل عفش بالرياض">
+        <!-- <div class="plog-item" data-title="5 نصائح ذهبية لاختيار أفضل شركة نقل عفش بالرياض">
           <p>
-            الانتقال إلى منزل جديد في الرياض يمكن أن يكون مهمة مرهقة، واختيار شركة نقل العفش المناسبة هو مفتاح التجربة الناجحة. إليك 5 نصائح لمساعدتك:
-            1.  **البحث والمقارنة:** لا تعتمد على أول شركة تجدها. ابحث عن 3-4 شركات نقل عفش بالرياض وقارن بين خدماتهم وأسعارهم.
-            2.  **قراءة تقييمات العملاء:** التقييمات على جوجل أو مواقع التواصل الاجتماعي تعطيك فكرة حقيقية عن جودة الخدمة.
-            3.  **التأكد من التراخيص:** اختر شركة نقل أثاث مرخصة لضمان حقوقك وسلامة ممتلكاتك.
-            4.  **طلب عرض سعر مكتوب:** اطلب تفاصيل التكلفة شاملة (تغليف، نقل، فك وتركيب) لتجنب أي رسوم مفاجئة.
-            5.  **خدمات التغليف:** تأكد من أن الشركة تستخدم مواد تغليف عالية الجودة لحماية الأثاث من الخدوش والكسر.
+            الانتقال إلى منزل جديد في الرياض يمكن أن يكون مهمة مرهقة، واختيار شركة نقل العفش المناسبة هو مفتاح التجربة
+            الناجحة. إليك 5 نصائح لمساعدتك:
+            1. **البحث والمقارنة:** لا تعتمد على أول شركة تجدها. ابحث عن 3-4 شركات نقل عفش بالرياض وقارن بين خدماتهم
+            وأسعارهم.
+            2. **قراءة تقييمات العملاء:** التقييمات على جوجل أو مواقع التواصل الاجتماعي تعطيك فكرة حقيقية عن جودة
+            الخدمة.
+            3. **التأكد من التراخيص:** اختر شركة نقل أثاث مرخصة لضمان حقوقك وسلامة ممتلكاتك.
+            4. **طلب عرض سعر مكتوب:** اطلب تفاصيل التكلفة شاملة (تغليف، نقل، فك وتركيب) لتجنب أي رسوم مفاجئة.
+            5. **خدمات التغليف:** تأكد من أن الشركة تستخدم مواد تغليف عالية الجودة لحماية الأثاث من الخدوش والكسر.
             باتباع هذه النصائح، ستضمن تجربة نقل عفش آمنة ومريحة داخل الرياض.
           </p>
-        </div>
-        <div class="plog-item" data-title="خطوات تغليف الأثاث باحترافية لضمان نقله بأمان">
+        </div> -->
+        <!-- <div class="plog-item" data-title="خطوات تغليف الأثاث باحترافية لضمان نقله بأمان">
           <p>
             تغليف الأثاث بشكل صحيح هو أهم خطوة لضمان وصوله سليمًا. شركة الهرم للنقل تقدم لك هذه الخطوات الأساسية:
             - **تجهيز المواد:** ستحتاج إلى (كراتين مقواة، بلاستيك الفقاعات، شريط لاصق، وأغطية واقية).
             - **تفكيك القطع الكبيرة:** قم بفك أرجل الطاولات والمكاتب لسهولة النقل والتغليف.
-            - **تغليف القطع الزجاجية:** استخدم بلاستيك الفقاعات بشكل مكثف حول المرايا والألواح الزجاجية وضعها في كراتين مسطحة.
+            - **تغليف القطع الزجاجية:** استخدم بلاستيك الفقاعات بشكل مكثف حول المرايا والألواح الزجاجية وضعها في كراتين
+            مسطحة.
             - **حماية الأجهزة الكهربائية:** استخدم كراتينها الأصلية إن أمكن، أو اغلفها ببطانيات وبلاستيك الفقاعات.
             - **كتابة المحتويات:** اكتب على كل كرتونة محتوياتها والغرفة التابعة لها لتسهيل عملية التفريغ.
             هذه الخطوات تضمن لك نقل أثاثك بأمان تام، وهي جزء من خدمتنا الاحترافية في نقل العفش داخل الرياض.
           </p>
-        </div>
-        <div class="plog-item" data-title="كم تكلفة نقل العفش داخل أحياء الرياض؟">
+        </div> -->
+        <!-- <div class="plog-item" data-title="كم تكلفة نقل العفش داخل أحياء الرياض؟">
           <p>
             تعتمد تكلفة نقل العفش داخل الرياض على عدة عوامل أساسية، وفهمها يساعدك في الحصول على أفضل سعر:
             - **حجم العفش:** عدد الغرف وكمية الأثاث هو العامل الأكبر في تحديد السعر.
             - **المسافة بين الموقعين:** تكلفة النقل من شمال الرياض إلى جنوبها تختلف عن النقل في نفس الحي.
             - **الطابق:** النقل من وإلى الأدوار المرتفعة قد يزيد من التكلفة إذا تطلب معدات خاصة.
             - **خدمات إضافية:** هل تحتاج إلى فك وتركيب مكيفات اسبلت أو تغليف خاص للقطع الثمينة؟
-            للحصول على عرض سعر دقيق، تواصل مع شركة نقل عفش موثوقة في الرياض مثل شركة الهرم وقدم لهم كل هذه التفاصيل. نحن نقدم أسعارًا تنافسية وخدمة شفافة.
+            للحصول على عرض سعر دقيق، تواصل مع شركة نقل عفش موثوقة في الرياض مثل شركة الهرم وقدم لهم كل هذه التفاصيل. نحن
+            نقدم أسعارًا تنافسية وخدمة شفافة.
           </p>
-        </div>
+        </div> -->
       </div>
     </div>
   </section>
@@ -594,14 +655,8 @@
         موقعنا على الخريطة
       </h2>
       <div class="w-full h-[450px] rounded-lg shadow-xl overflow-hidden" data-aos="fade-up" data-aos-delay="100">
-        <iframe
-          width="100%"
-          height="100%"
-          style="border:0;"
-          loading="lazy"
-          allowfullscreen
-          src="https://maps.google.com/maps?q=24.606111,46.723194&hl=ar&z=15&amp;output=embed"
-        >
+        <iframe width="100%" height="100%" style="border:0;" loading="lazy" allowfullscreen
+          src="https://maps.google.com/maps?q=24.606111,46.723194&hl=ar&z=15&amp;output=embed">
         </iframe>
       </div>
     </div>
@@ -768,6 +823,54 @@
     </div>
   </div>
   <!-- End Special Confirm Modal -->
+
+  <!-- Service Details Modal -->
+  <div id="service-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black bg-opacity-50" style="display:none;">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto" data-aos="zoom-in">
+      <div class="relative p-8">
+        <button id="close-service-modal" class="absolute left-4 top-4 text-gray-400 hover:text-[#7B8C6D] text-2xl transition">
+          <i class="fas fa-times"></i>
+        </button>
+        
+        <div class="text-center mb-6">
+          <div id="service-modal-icon" class="w-20 h-20 mx-auto mb-4 rounded-full bg-[#7B8C6D] flex items-center justify-center text-white text-3xl">
+            <i class="fas fa-truck"></i>
+          </div>
+          <h2 id="service-modal-title" class="text-2xl font-bold text-[#7B8C6D] mb-2">عنوان الخدمة</h2>
+        </div>
+        
+        <div id="service-modal-content" class="text-right space-y-4">
+          <div id="service-modal-description" class="text-gray-700 leading-relaxed">
+            وصف الخدمة سيظهر هنا...
+          </div>
+          
+          <div id="service-modal-features" class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-bold text-[#7B8C6D] mb-3">مميزات الخدمة:</h3>
+            <ul id="service-modal-features-list" class="space-y-2 text-gray-700">
+              <!-- المميزات ستظهر هنا -->
+            </ul>
+          </div>
+          
+          <div id="service-modal-pricing" class="bg-[#F7F8F2] rounded-lg p-4">
+            <h3 class="font-bold text-[#7B8C6D] mb-2">الأسعار:</h3>
+            <p id="service-modal-pricing-text" class="text-gray-700">
+              أسعار تنافسية تبدأ من...
+            </p>
+          </div>
+          
+          <div class="flex flex-col sm:flex-row gap-4 justify-center mt-6">
+            <a href="#contact" class="bg-[#7B8C6D] text-white px-8 py-3 rounded-full font-semibold hover:bg-[#657458] transition text-center">
+              احجز الآن
+            </a>
+            <a href="tel:0560200279" class="border-2 border-[#7B8C6D] text-[#7B8C6D] px-8 py-3 rounded-full font-semibold hover:bg-[#7B8C6D] hover:text-white transition text-center">
+              اتصل بنا
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Service Details Modal -->
 
   <!-- Welcome Toast -->
   <div id="welcome-toast"
